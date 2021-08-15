@@ -5,8 +5,12 @@ import { GoldenLayout as GoldenLayoutClass, LayoutConfig } from 'golden-layout';
 import baseStyles from 'golden-layout/dist/css/goldenlayout-base.css';
 // @ts-ignore
 import theme from 'golden-layout/dist/css/themes/goldenlayout-light-theme.css';
+
+import { ContextProvider } from '@holochain-open-dev/context';
+
 import { GetContent } from './get-content';
 import { BaseElement } from './base-element';
+import { GOLDEN_LAYOUT_CONTEXT } from './context';
 
 export class GoldenLayout extends BaseElement {
   _goldenLayout!: GoldenLayoutClass;
@@ -27,14 +31,13 @@ export class GoldenLayout extends BaseElement {
       this.shadowRoot?.getElementById('golden-layout') || undefined
     );
 
-    this._goldenLayout.registerComponentFactoryFunction(
-      'html',
-      (container, state) => {
-        container.element.innerHTML = (state as any).html as string;
-      }
+    new ContextProvider(
+      this,
+      GOLDEN_LAYOUT_CONTEXT as unknown as never,
+      this._goldenLayout as any
     );
-    const root = await this.getRoot();
 
+    const root = await this.getRoot();
     const layoutConfig: LayoutConfig = {
       root,
     };

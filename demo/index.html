@@ -17,13 +17,14 @@
   </head>
   <body>
     <golden-layout id="layout">
+      <golden-layout-register type="hello">
+        <template> <div>hi</div></template></golden-layout-register
+      >
       <golden-layout-row>
-        <golden-layout-component title="hello">
-          <div>hi</div></golden-layout-component
-        >
-        <golden-layout-component title="hello2">
-          <div>hi2</div></golden-layout-component
-        >
+        <golden-layout-component type="hello" title="hi">
+        </golden-layout-component>
+        <golden-layout-component type="hello" title="hi2">
+        </golden-layout-component>
       </golden-layout-row>
     </golden-layout>
 
@@ -32,11 +33,13 @@
         GoldenLayout,
         GoldenLayoutRow,
         GoldenLayoutComponent,
+        GoldenLayoutRegister,
       } from '../dist/index.js';
 
       customElements.define('golden-layout', GoldenLayout);
       customElements.define('golden-layout-row', GoldenLayoutRow);
       customElements.define('golden-layout-component', GoldenLayoutComponent);
+      customElements.define('golden-layout-register', GoldenLayoutRegister);
     </script>
   </body>
 </html>
