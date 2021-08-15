@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        background: #fafafa;
+      }
+      html,
+      body,
+      #layout {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <golden-layout id="layout">
+      <golden-layout-row>
+        <golden-layout-component title="hello">
+          <div>hi</div></golden-layout-component
+        >
+        <golden-layout-component title="hello2">
+          <div>hi2</div></golden-layout-component
+        >
+      </golden-layout-row>
+    </golden-layout>
+
+    <script type="module">
+      import {
+        GoldenLayout,
+        GoldenLayoutRow,
+        GoldenLayoutComponent,
+      } from '../dist/index.js';
+
+      customElements.define('golden-layout', GoldenLayout);
+      customElements.define('golden-layout-row', GoldenLayoutRow);
+      customElements.define('golden-layout-component', GoldenLayoutComponent);
+    </script>
+  </body>
+</html>
