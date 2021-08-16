@@ -3,18 +3,23 @@ import { property } from 'lit/decorators.js';
 import { ContextController } from '@holochain-open-dev/context';
 import { GoldenLayout } from 'golden-layout';
 
-import { GOLDEN_LAYOUT_CONTEXT } from './context';
-import { BaseElement } from './base-element';
+import { GOLDEN_LAYOUT_CONTEXT } from '../utils/context';
+import { BaseElement } from '../utils/base-element';
 
 export class GoldenLayoutRegister extends BaseElement {
-  @property()
-  type!: string;
+  @property({ attribute: 'component-type' })
+  componentType!: string;
 
   register(goldenLayout: GoldenLayout, template: HTMLTemplateElement) {
-    goldenLayout.registerComponentFactoryFunction(this.type, container => {
-      const clone = template.content.firstElementChild?.cloneNode(true) as Node;
-      container.element.appendChild(clone);
-    });
+    goldenLayout.registerComponentFactoryFunction(
+      this.componentType,
+      container => {
+        const clone = template.content.firstElementChild?.cloneNode(
+          true
+        ) as Node;
+        container.element.appendChild(clone);
+      }
+    );
   }
 
   async firstUpdated() {

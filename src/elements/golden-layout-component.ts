@@ -1,12 +1,12 @@
 import { ComponentItemConfig } from 'golden-layout';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { BaseElement } from './base-element';
-import { GetContent } from './get-content';
+import { BaseElement } from '../utils/base-element';
+import { GetContent } from '../utils/get-content';
 
 export class GoldenLayoutComponent extends BaseElement implements GetContent {
-  @property()
-  type!: string;
+  @property({ attribute: 'component-type' })
+  componentType!: string;
 
   @property()
   title!: string;
@@ -15,7 +15,7 @@ export class GoldenLayoutComponent extends BaseElement implements GetContent {
     return {
       title: this.title,
       type: 'component',
-      componentType: this.type,
+      componentType: this.componentType,
       componentState: {},
     };
   }

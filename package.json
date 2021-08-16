@@ -10,7 +10,7 @@
     "start": "npm run build && concurrently -k -r \"npm run build:watch\" \"wds\"",
     "build": "rimraf dist && rollup -c rollup.config.js",
     "build:watch": "rollup -c rollup.config.js -w",
-    "prepublish": "tsc",
+    "prepare": "npm run build",
     "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
     "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore",
     "storybook": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds -c .storybook/server.mjs\"",

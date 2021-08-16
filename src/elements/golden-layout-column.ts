@@ -1,6 +1,6 @@
 import { RowOrColumnItemConfig } from 'golden-layout';
-import { CollectionElement } from './collection-element';
-import { GetContent } from './get-content';
+import { CollectionElement } from '../utils/collection-element';
+import { GetContent } from '../utils/get-content';
 
 export class GoldenLayoutColumn
   extends CollectionElement

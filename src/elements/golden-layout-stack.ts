@@ -1,6 +1,6 @@
 import { ComponentItemConfig, StackItemConfig } from 'golden-layout';
-import { CollectionElement } from './collection-element';
-import { GetContent } from './get-content';
+import { CollectionElement } from '../utils/collection-element';
+import { GetContent } from '../utils/get-content';
 
 export class GoldenLayoutStack extends CollectionElement implements GetContent {
   async getContent(): Promise<StackItemConfig> {
