@@ -30,7 +30,9 @@ export class GoldenLayoutRegister extends BaseElement {
     new ContextController(
       this,
       value => {
-        this.register(value, template);
+        if (value) {
+          this.register(value, template);
+        }
       },
       GOLDEN_LAYOUT_CONTEXT as unknown as never
     );

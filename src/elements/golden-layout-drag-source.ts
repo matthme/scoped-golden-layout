@@ -15,7 +15,12 @@ export class GoldenLayoutDragSource extends BaseElement {
     new ContextController(
       this,
       value => {
-        (value as GoldenLayout).newDragSource(children[0], this.componentType);
+        if (value) {
+          (value as GoldenLayout).newDragSource(
+            children[0],
+            this.componentType
+          );
+        }
       },
       GOLDEN_LAYOUT_CONTEXT as unknown as never
     );
