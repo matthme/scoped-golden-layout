@@ -50,6 +50,12 @@ export class GoldenLayout extends BaseElement {
     this.addEventListener(ROOT_LOADED_EVENT, e => {
       e.preventDefault();
       e.stopPropagation();
+      if (this.scopedElements) {
+        for (const [tag, el] of Object.entries(this.scopedElements)) {
+          (e as any).detail.rootElement.defineScopedElement(tag, el);
+        }
+      }
+
       if (!this.layoutConfig) {
         (this._goldenLayout.value as GoldenLayoutClass).loadLayout({
           root: (e as any).detail.root,
@@ -57,12 +63,6 @@ export class GoldenLayout extends BaseElement {
             popout: false,
           },
         });
-      }
-
-      if (this.scopedElements) {
-        for (const [tag, el] of Object.entries(this.scopedElements)) {
-          (e as any).detail.rootElement.defineScopedElement(tag, el);
-        }
       }
     });
   }
