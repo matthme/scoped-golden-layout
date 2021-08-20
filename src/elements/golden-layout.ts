@@ -24,6 +24,14 @@ export class GoldenLayout extends BaseElement {
           (e as CustomEvent).detail.element as HTMLElement
         ) as unknown as never
       );
+      (
+        this._goldenLayout.value as GoldenLayoutClass
+      ).registerComponentFactoryFunction(
+        'native-html-component',
+        (container, state) => {
+          container.element.innerHTML = (state as any).html;
+        }
+      );
     });
     this.addEventListener(ROOT_LOADED_EVENT, e => {
       e.preventDefault();

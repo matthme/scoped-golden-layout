@@ -12,15 +12,26 @@ export class GoldenLayoutComponent extends BaseElement implements GetContent {
   title!: string;
 
   async getContent(): Promise<ComponentItemConfig> {
+    if (this.componentType) {
+      return {
+        title: this.title,
+        type: 'component',
+        componentType: this.componentType,
+        componentState: {},
+      };
+    }
+    const children = await this.getSlottedChildren();
     return {
       title: this.title,
       type: 'component',
-      componentType: this.componentType,
-      componentState: {},
+      componentType: 'native-html-component',
+      componentState: {
+        html: children[0].outerHTML,
+      },
     };
   }
 
   render() {
-    return html``;
+    return html`<slot style="display: none;"></slot>`;
   }
 }
