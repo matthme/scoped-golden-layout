@@ -1,8 +1,8 @@
 import { html } from 'lit';
-import { BaseElement } from './base-element';
 import { GetContent } from './get-content';
+import { ItemElement } from './item-element';
 
-export class CollectionElement extends BaseElement {
+export class CollectionElement extends ItemElement {
   async getCollectionContent() {
     const children = await this.getSlottedChildren();
 

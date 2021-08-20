@@ -10,6 +10,7 @@ export class GoldenLayoutColumn
     return {
       type: 'column',
       content: await this.getCollectionContent(),
+      ...this.getCommonConfig(),
     };
   }
 }

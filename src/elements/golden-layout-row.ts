@@ -7,6 +7,7 @@ export class GoldenLayoutRow extends CollectionElement implements GetContent {
     return {
       type: 'row',
       content: await this.getCollectionContent(),
+      ...this.getCommonConfig(),
     };
   }
 }

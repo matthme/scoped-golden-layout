@@ -7,6 +7,7 @@ export class GoldenLayoutStack extends CollectionElement implements GetContent {
     return {
       type: 'stack',
       content: (await this.getCollectionContent()) as ComponentItemConfig[],
+      ...this.getCommonConfig(),
     };
   }
 }

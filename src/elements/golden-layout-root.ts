@@ -35,6 +35,7 @@ export class GoldenLayoutRoot extends BaseElement {
 
   async firstUpdated() {
     const root = await this.getRoot();
+
     this.dispatchEvent(
       new CustomEvent(ROOT_LOADED_EVENT, {
         bubbles: true,

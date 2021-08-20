@@ -1,15 +1,18 @@
 import { ComponentItemConfig } from 'golden-layout';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { BaseElement } from '../utils/base-element';
 import { GetContent } from '../utils/get-content';
+import { ItemElement } from '../utils/item-element';
 
-export class GoldenLayoutComponent extends BaseElement implements GetContent {
+export class GoldenLayoutComponent extends ItemElement implements GetContent {
   @property({ attribute: 'component-type' })
   componentType!: string;
 
   @property()
   title!: string;
+
+  @property({ type: Boolean })
+  unclosable: boolean = false;
 
   async getContent(): Promise<ComponentItemConfig> {
     if (this.componentType) {
@@ -18,6 +21,8 @@ export class GoldenLayoutComponent extends BaseElement implements GetContent {
         type: 'component',
         componentType: this.componentType,
         componentState: {},
+        isClosable: !this.unclosable,
+        ...this.getCommonConfig(),
       };
     }
     const children = await this.getSlottedChildren();
@@ -28,6 +33,8 @@ export class GoldenLayoutComponent extends BaseElement implements GetContent {
       componentState: {
         html: children[0].outerHTML,
       },
+      isClosable: !this.unclosable,
+      ...this.getCommonConfig(),
     };
   }
 

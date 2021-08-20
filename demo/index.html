@@ -29,11 +29,15 @@
 
         <golden-layout-root style="flex: 1">
           <golden-layout-row>
-            <golden-layout-component title="hi">
-              <div><span>Custom Thing</span></div>
-            </golden-layout-component>
-            <golden-layout-component component-type="hello" title="hi2">
-            </golden-layout-component>
+            <golden-layout-row width="50">
+              <golden-layout-component component-type="hello" title="hi2">
+              </golden-layout-component>
+            </golden-layout-row>
+            <golden-layout-column width="10">
+              <golden-layout-component title="hi" unclosable>
+                <div><span>Custom Thing2</span></div>
+              </golden-layout-component>
+            </golden-layout-column>
           </golden-layout-row>
         </golden-layout-root>
       </div>
@@ -43,6 +47,7 @@
       import {
         GoldenLayout,
         GoldenLayoutRow,
+        GoldenLayoutColumn,
         GoldenLayoutComponent,
         GoldenLayoutRegister,
         GoldenLayoutDragSource,
@@ -51,6 +56,7 @@
 
       customElements.define('golden-layout', GoldenLayout);
       customElements.define('golden-layout-row', GoldenLayoutRow);
+      customElements.define('golden-layout-column', GoldenLayoutColumn);
       customElements.define('golden-layout-component', GoldenLayoutComponent);
       customElements.define('golden-layout-register', GoldenLayoutRegister);
       customElements.define('golden-layout-root', GoldenLayoutRoot);
