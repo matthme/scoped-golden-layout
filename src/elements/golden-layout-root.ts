@@ -42,6 +42,7 @@ export class GoldenLayoutRoot extends BaseElement {
         composed: true,
         detail: {
           root,
+          rootElement: this,
         },
       })
     );
@@ -61,6 +62,10 @@ export class GoldenLayoutRoot extends BaseElement {
         :host {
           display: flex;
           flex: 1;
+        }
+
+        .lm_content {
+          display: flex;
         }
       `,
       baseStyles,
