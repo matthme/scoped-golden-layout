@@ -1,8 +1,8 @@
 {
-  "name": "golden-layout-custom-elements",
-  "version": "0.0.0",
-  "description": "Webcomponent golden-layout-custom-elements following open-wc recommendations",
-  "author": "golden-layout-custom-elements",
+  "name": "@scoped-elements/golden-layout",
+  "version": "0.0.1",
+  "description": "Custom Elements that export the [golden-layout](https://github.com/golden-layout/golden-layout) library using the [scoped-elements mixin](https://www.npmjs.com/package/@open-wc/scoped-elements/v/1.0.3)",
+  "author": "guillem.cordoba@gmail.com",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",

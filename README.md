@@ -1,6 +1,6 @@
-# Custom Elements golden-layout
+# @scoped-elements/golden-layout
 
-Custom Elements that export the excellent [golden-layout](https://github.com/golden-layout/golden-layout) library.
+Custom Elements that export the [golden-layout](https://github.com/golden-layout/golden-layout) library.
 
 The main goals for these bindings is:
 
@@ -22,7 +22,7 @@ The main goals for these bindings is:
 ## Installation
 
 ```bash
-npm i "https://github.com/guillemcordoba/golden-layout-custom-elements"
+npm i "https://github.com/scoped-elements/golden-layout"
 ```
 
 ## Usage
