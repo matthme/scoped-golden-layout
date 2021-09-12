@@ -17,9 +17,9 @@
     "publish-to-branch": "npm run build && gh-pages -d ./ -b build"
   },
   "dependencies": {
-    "@holochain-open-dev/context": "github:holochain-open-dev/context#ui-build",
+    "@lit-labs/context": "github:holochain-open-dev/context#build",
     "@open-wc/scoped-elements": "^2.0.0-next.4",
-    "lit": "^2.0.0-rc.2"
+    "lit": "^2.0.0-rc.4"
   },
   "devDependencies": {
     "@open-wc/eslint-config": "^4.3.0",

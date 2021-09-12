@@ -1,9 +1,9 @@
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { ContextController } from '@holochain-open-dev/context';
+import { ContextConsumer } from '@lit-labs/context';
 import { GoldenLayout } from 'golden-layout';
 
-import { GOLDEN_LAYOUT_CONTEXT } from '../utils/context';
+import { goldenLayoutContext } from '../utils/context';
 import { BaseElement } from '../utils/base-element';
 
 export class GoldenLayoutRegister extends BaseElement {
@@ -27,15 +27,11 @@ export class GoldenLayoutRegister extends BaseElement {
 
     const template = children[0] as HTMLTemplateElement;
 
-    new ContextController(
-      this,
-      value => {
-        if (value) {
-          this.register(value, template);
-        }
-      },
-      GOLDEN_LAYOUT_CONTEXT as unknown as never
-    );
+    new ContextConsumer(this, goldenLayoutContext, value => {
+      if (value) {
+        this.register(value, template);
+      }
+    });
   }
 
   render() {

@@ -1,10 +1,9 @@
-import { ContextController } from '@holochain-open-dev/context';
+import { ContextConsumer } from '@lit-labs/context';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { GoldenLayout } from 'golden-layout';
 
 import { BaseElement } from '../utils/base-element';
-import { GOLDEN_LAYOUT_CONTEXT } from '../utils/context';
+import { goldenLayoutContext } from '../utils/context';
 
 export class GoldenLayoutDragSource extends BaseElement {
   @property({ attribute: 'component-type' })
@@ -12,18 +11,11 @@ export class GoldenLayoutDragSource extends BaseElement {
 
   async firstUpdated() {
     const children = await this.getSlottedChildren();
-    new ContextController(
-      this,
-      value => {
-        if (value) {
-          (value as GoldenLayout).newDragSource(
-            children[0],
-            this.componentType
-          );
-        }
-      },
-      GOLDEN_LAYOUT_CONTEXT as unknown as never
-    );
+    new ContextConsumer(this, goldenLayoutContext, value => {
+      if (value) {
+        value.newDragSource(children[0], this.componentType);
+      }
+    });
   }
 
   render() {

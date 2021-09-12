@@ -8,10 +8,10 @@ import {
 } from 'golden-layout';
 import { property } from 'lit/decorators.js';
 
-import { ContextProvider } from '@holochain-open-dev/context';
+import { ContextProvider } from '@lit-labs/context';
 
 import { BaseElement } from '../utils/base-element';
-import { GOLDEN_LAYOUT_CONTEXT } from '../utils/context';
+import { goldenLayoutContext } from '../utils/context';
 import { INIT_LAYOUT_EVENT, ROOT_LOADED_EVENT } from '../utils/events';
 
 export class GoldenLayout extends BaseElement {
@@ -22,10 +22,7 @@ export class GoldenLayout extends BaseElement {
   @property()
   layoutConfig: LayoutConfig | undefined = undefined;
 
-  _goldenLayout = new ContextProvider(
-    this,
-    GOLDEN_LAYOUT_CONTEXT as unknown as never
-  );
+  _goldenLayoutContext = new ContextProvider(this, goldenLayoutContext);
 
   connectedCallback() {
     super.connectedCallback();
@@ -45,7 +42,7 @@ export class GoldenLayout extends BaseElement {
           container.element.innerHTML = (state as any).html;
         }
       );
-      this._goldenLayout.setValue(layout as unknown as never);
+      this._goldenLayoutContext.setValue(layout as unknown as never);
     });
     this.addEventListener(ROOT_LOADED_EVENT, e => {
       e.preventDefault();
@@ -57,7 +54,7 @@ export class GoldenLayout extends BaseElement {
       }
 
       if (!this.layoutConfig) {
-        (this._goldenLayout.value as GoldenLayoutClass).loadLayout({
+        this._goldenLayoutContext.value.loadLayout({
           root: (e as any).detail.root,
           header: {
             popout: false,
@@ -68,7 +65,7 @@ export class GoldenLayout extends BaseElement {
   }
 
   saveLayout(): ResolvedLayoutConfig {
-    return (this._goldenLayout.value as GoldenLayoutClass).saveLayout();
+    return this._goldenLayoutContext.value.saveLayout();
   }
 
   render() {
