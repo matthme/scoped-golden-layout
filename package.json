@@ -9,6 +9,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "npm run build && concurrently -k -r \"npm run build:watch\" \"wds\"",
     "build": "rimraf dist && rollup -c rollup.config.js",
