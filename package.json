@@ -26,7 +26,7 @@
     "@lit-labs/context": "github:holochain-open-dev/context#build",
     "@open-wc/scoped-elements": "^2.0.0-next.4",
     "golden-layout": "github:guillemcordoba/golden-layout#build",
-    "lit": "^2.0.0-rc.4"
+    "lit": "^2.0.2"
   },
   "devDependencies": {
     "@open-wc/eslint-config": "^4.3.0",
