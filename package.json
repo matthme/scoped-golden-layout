@@ -1,14 +1,12 @@
 {
   "name": "@scoped-elements/golden-layout",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Custom Elements that export the [golden-layout](https://github.com/golden-layout/golden-layout) library using the [scoped-elements mixin](https://www.npmjs.com/package/@open-wc/scoped-elements/v/1.0.3)",
   "author": "guillem.cordoba@gmail.com",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "publishConfig": {
     "access": "public"
   },
@@ -23,10 +21,10 @@
     "publish-to-branch": "npm run build && gh-pages -d ./ -b build"
   },
   "dependencies": {
-    "@lit-labs/context": "github:holochain-open-dev/context#build",
-    "@open-wc/scoped-elements": "^2.0.0-next.4",
+    "@lit-labs/context": "^0.2.0",
+    "@open-wc/scoped-elements": "^2.1.4",
     "golden-layout": "github:guillemcordoba/golden-layout#build",
-    "lit": "^2.0.2"
+    "lit": "^2.2.0"
   },
   "devDependencies": {
     "@open-wc/eslint-config": "^4.3.0",
@@ -53,22 +51,15 @@
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
-    "extends": [
-      "@open-wc/eslint-config",
-      "eslint-config-prettier"
-    ],
-    "plugins": [
-      "@typescript-eslint"
-    ],
+    "extends": ["@open-wc/eslint-config", "eslint-config-prettier"],
+    "plugins": ["@typescript-eslint"],
     "rules": {
       "import/no-extraneous-dependencies": "off",
       "no-new": "off",
       "import/extensions": "off",
       "no-param-reassign": "off",
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error"
-      ],
+      "@typescript-eslint/no-unused-vars": ["error"],
       "import/no-unresolved": "off"
     }
   },
@@ -82,9 +73,6 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "prettier --write"
-    ]
+    "*.ts": ["eslint --fix", "prettier --write"]
   }
 }
