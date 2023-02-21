@@ -30,7 +30,7 @@ export class GoldenLayoutRoot extends BaseElement {
       }
     }
 
-    throw new Error('No child found within the slot');
+    return undefined;
   }
 
   async firstUpdated() {

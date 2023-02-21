@@ -53,12 +53,18 @@ export class GoldenLayout extends BaseElement {
           (e as any).detail.rootElement.defineScopedElement(tag, el);
         }
       }
+
       const layout = this._goldenLayoutContext.value;
       if (this.layoutConfig) {
         layout.loadLayout(this.layoutConfig);
       } else {
+        const { root } = (e as any).detail;
+        if (root === undefined)
+          throw new Error(
+            "Can't initialize GoldenLayout: either pass the layout config via input parameter in the <golden-layout> element or define your initial layout inside the <golden-layout-root> element"
+          );
         layout.loadLayout({
-          root: (e as any).detail.root,
+          root,
           header: {
             popout: false,
           },
