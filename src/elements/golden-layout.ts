@@ -36,9 +36,6 @@ export class GoldenLayout extends BaseElement {
       const layout = new GoldenLayoutClass(
         (e as CustomEvent).detail.element as HTMLElement
       );
-      if (this.layoutConfig) {
-        layout.loadLayout(this.layoutConfig);
-      }
 
       layout.registerComponentFactoryFunction(
         'native-html-component',
@@ -56,9 +53,11 @@ export class GoldenLayout extends BaseElement {
           (e as any).detail.rootElement.defineScopedElement(tag, el);
         }
       }
-
-      if (!this.layoutConfig) {
-        this._goldenLayoutContext.value.loadLayout({
+      const layout = this._goldenLayoutContext.value;
+      if (this.layoutConfig) {
+        layout.loadLayout(this.layoutConfig);
+      } else {
+        layout.loadLayout({
           root: (e as any).detail.root,
           header: {
             popout: false,

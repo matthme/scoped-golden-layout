@@ -40,9 +40,20 @@
         'golden-layout-drag-source',
         GoldenLayoutDragSource
       );
+      const config = {
+        root: {
+          type: 'row',
+          content: [
+            {
+              type: 'component',
+              componentType: 'hello',
+            },
+          ],
+        },
+      };
       render(
         html`
-          <golden-layout id="layout">
+          <golden-layout id="layout" .layoutConfig=${config}>
             <golden-layout-register component-type="hello">
               <template> <div>hi</div></template></golden-layout-register
             >
