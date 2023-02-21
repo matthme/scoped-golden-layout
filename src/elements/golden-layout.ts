@@ -24,6 +24,10 @@ export class GoldenLayout extends BaseElement {
 
   _goldenLayoutContext = new ContextProvider(this, goldenLayoutContext);
 
+  get goldenLayout(): GoldenLayoutClass {
+    return this._goldenLayoutContext.value as GoldenLayoutClass;
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener(INIT_LAYOUT_EVENT, e => {

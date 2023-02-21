@@ -1,4 +1,4 @@
-import { ComponentItemConfig } from 'golden-layout';
+import { ComponentItemConfig, JsonValue } from 'golden-layout';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { GetContent } from '../utils/get-content';
@@ -11,6 +11,9 @@ export class GoldenLayoutComponent extends ItemElement implements GetContent {
   @property()
   title!: string;
 
+  @property()
+  state: JsonValue | undefined;
+
   @property({ type: Boolean })
   unclosable: boolean = false;
 
@@ -20,7 +23,7 @@ export class GoldenLayoutComponent extends ItemElement implements GetContent {
         title: this.title,
         type: 'component',
         componentType: this.componentType,
-        componentState: {},
+        componentState: this.state ? this.state : {},
         isClosable: !this.unclosable,
         ...this.getCommonConfig(),
       };

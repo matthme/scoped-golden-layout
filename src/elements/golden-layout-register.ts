@@ -1,7 +1,7 @@
-import { html } from 'lit';
+import { render, html, TemplateResult } from 'lit';
 import { property } from 'lit/decorators.js';
 import { ContextConsumer } from '@lit-labs/context';
-import { GoldenLayout } from 'golden-layout';
+import { GoldenLayout, JsonValue } from 'golden-layout';
 
 import { goldenLayoutContext } from '../utils/context';
 import { BaseElement } from '../utils/base-element';
@@ -10,7 +10,13 @@ export class GoldenLayoutRegister extends BaseElement {
   @property({ attribute: 'component-type' })
   componentType!: string;
 
-  register(goldenLayout: GoldenLayout, template: HTMLTemplateElement) {
+  @property()
+  template: ((state: JsonValue | undefined) => TemplateResult) | undefined;
+
+  async registerSlotTemplate(goldenLayout: GoldenLayout) {
+    const children = await this.getSlottedChildren();
+
+    const template = children[0] as HTMLTemplateElement;
     goldenLayout.registerComponentFactoryFunction(
       this.componentType,
       container => {
@@ -22,16 +28,27 @@ export class GoldenLayoutRegister extends BaseElement {
     );
   }
 
-  async firstUpdated() {
-    const children = await this.getSlottedChildren();
-
-    const template = children[0] as HTMLTemplateElement;
-
-    new ContextConsumer(this, goldenLayoutContext, value => {
-      if (value) {
-        this.register(value, template);
-      }
-    });
+  firstUpdated() {
+    new ContextConsumer(
+      this,
+      goldenLayoutContext,
+      goldenLayout => {
+        if (goldenLayout) {
+          if (this.template !== undefined) {
+            const templateFn = this.template;
+            goldenLayout.registerComponentFactoryFunction(
+              this.componentType,
+              (container, state) => {
+                render(templateFn(state), container.element);
+              }
+            );
+          } else {
+            this.registerSlotTemplate(goldenLayout);
+          }
+        }
+      },
+      true
+    );
   }
 
   render() {
