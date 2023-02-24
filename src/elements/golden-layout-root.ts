@@ -8,6 +8,7 @@ import theme from 'golden-layout/dist/css/themes/goldenlayout-light-theme.css';
 import { BaseElement } from '../utils/base-element';
 import { GetContent } from '../utils/get-content';
 import { INIT_LAYOUT_EVENT, ROOT_LOADED_EVENT } from '../utils/events';
+import { RenderTemplate } from './render-template';
 
 export class GoldenLayoutRoot extends BaseElement {
   initLayout(el: Element | undefined) {
@@ -71,5 +72,11 @@ export class GoldenLayoutRoot extends BaseElement {
       baseStyles,
       theme,
     ];
+  }
+
+  static get scopedElements() {
+    return {
+      'render-template': RenderTemplate,
+    };
   }
 }

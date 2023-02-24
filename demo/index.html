@@ -12,11 +12,12 @@
         height: 100%;
         width: 100%;
         margin: 0;
+        display: flex;
       }
     </style>
   </head>
   <body>
-    <div id="layout"></div>
+    <demo-app id="layout"></demo-app>
 
     <script type="module">
       import {
@@ -28,69 +29,70 @@
         GoldenLayoutDragSource,
         GoldenLayoutRoot,
       } from '../dist/index.js';
-      import { render, html } from 'lit';
+      import { render, html, LitElement } from 'lit';
+      import { ScopedElementsMixin } from '@open-wc/scoped-elements';
 
-      customElements.define('golden-layout', GoldenLayout);
-      customElements.define('golden-layout-row', GoldenLayoutRow);
-      customElements.define('golden-layout-column', GoldenLayoutColumn);
-      customElements.define('golden-layout-component', GoldenLayoutComponent);
-      customElements.define('golden-layout-register', GoldenLayoutRegister);
-      customElements.define('golden-layout-root', GoldenLayoutRoot);
       customElements.define(
-        'golden-layout-drag-source',
-        GoldenLayoutDragSource
-      );
-      const config = {
-        root: {
-          type: 'row',
-          content: [
-            {
-              type: 'component',
-              componentType: 'hello',
-            },
-          ],
-        },
-      };
-      render(
-        html`
-          <golden-layout id="layout" .layoutConfig=${config}>
-            <golden-layout-register component-type="hello">
-              <template> <div>hi</div></template></golden-layout-register
-            >
-            <golden-layout-register
-              component-type="reactive-template"
-              .template=${({ text }) => html`<div>${text}</div>`}
-            ></golden-layout-register>
-            <div style="display: flex; flex-direction: row; flex: 1">
-              <ul>
-                <golden-layout-drag-source component-type="hello"
-                  ><li>hii</li></golden-layout-drag-source
+        'demo-app',
+        class DemoApp extends ScopedElementsMixin(LitElement) {
+          render() {
+            return html`
+              <golden-layout id="layout">
+                <golden-layout-register component-type="hello">
+                  <template> <div>hi</div></template></golden-layout-register
                 >
-              </ul>
-
-              <golden-layout-root style="flex: 1">
-                <golden-layout-row>
-                  <golden-layout-row width="50">
-                    <golden-layout-component component-type="hello" title="hi2">
-                    </golden-layout-component>
-                    <golden-layout-component
-                      component-type="reactive-template"
-                      title="hi2"
-                      .state=${{ text: 'asdf' }}
+                <golden-layout-register
+                  component-type="reactive-template"
+                  .template=${({ text }) =>
+                    html`<custom-span>${text}</custom-span>`}
+                ></golden-layout-register>
+                <div style="display: flex; flex-direction: row; flex: 1">
+                  <ul>
+                    <golden-layout-drag-source component-type="hello"
+                      ><li>hii</li></golden-layout-drag-source
                     >
-                    </golden-layout-component>
-                  </golden-layout-row>
-                  <golden-layout-column width="10">
-                    <golden-layout-component title="hi" unclosable>
-                      <div><span>Custom Thing2</span></div>
-                    </golden-layout-component>
-                  </golden-layout-column>
-                </golden-layout-row>
-              </golden-layout-root>
-            </div>
-          </golden-layout>
-        `,
-        document.getElementById('layout')
+                  </ul>
+
+                  <golden-layout-root style="flex: 1">
+                    <golden-layout-row>
+                      <golden-layout-row width="50">
+                        <golden-layout-component
+                          component-type="hello"
+                          title="hi2"
+                        >
+                        </golden-layout-component>
+                        <golden-layout-component
+                          component-type="reactive-template"
+                          title="hi2"
+                          .state=${{ text: 'asdf' }}
+                        >
+                        </golden-layout-component>
+                      </golden-layout-row>
+                      <golden-layout-column width="10">
+                        <golden-layout-component title="hi" unclosable>
+                          <div><span>Custom Thing2</span></div>
+                        </golden-layout-component>
+                      </golden-layout-column>
+                    </golden-layout-row>
+                  </golden-layout-root>
+                </div>
+              </golden-layout>
+            `;
+          }
+
+          static get scopedElements() {
+            return {
+              'golden-layout': GoldenLayout,
+              'golden-layout-row': GoldenLayoutRow,
+              'golden-layout-column': GoldenLayoutColumn,
+              'golden-layout-component': GoldenLayoutComponent,
+              'golden-layout-register': GoldenLayoutRegister,
+              'golden-layout-root': GoldenLayoutRoot,
+              'golden-layout-drag-source': GoldenLayoutDragSource,
+              'custom-span': class CustomSpan extends LitElement {},
+            };
+          }
+        }
       );
     </script>
   </body>
