@@ -1,9 +1,11 @@
 import { ComponentItemConfig, JsonValue } from 'golden-layout';
+import { customElement } from 'lit/decorators.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { GetContent } from '../utils/get-content';
 import { ItemElement } from '../utils/item-element';
 
+@customElement('golden-layout-component')
 export class GoldenLayoutComponent extends ItemElement implements GetContent {
   @property({ attribute: 'component-type' })
   componentType!: string;

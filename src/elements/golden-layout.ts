@@ -1,5 +1,5 @@
 import { css, html } from 'lit';
-import { Constructor } from '@open-wc/scoped-elements/types/src/types';
+import { customElement } from 'lit/decorators.js';
 
 import {
   GoldenLayout as GoldenLayoutClass,
@@ -14,11 +14,8 @@ import { BaseElement } from '../utils/base-element';
 import { goldenLayoutContext } from '../utils/context';
 import { INIT_LAYOUT_EVENT, ROOT_LOADED_EVENT } from '../utils/events';
 
+@customElement('golden-layout')
 export class GoldenLayout extends BaseElement {
-  @property()
-  scopedElements: { [key: string]: Constructor<HTMLElement> } | undefined =
-    undefined;
-
   @property()
   layoutConfig: LayoutConfig | undefined = undefined;
 
@@ -30,12 +27,14 @@ export class GoldenLayout extends BaseElement {
 
   connectedCallback() {
     super.connectedCallback();
+
     this.addEventListener(INIT_LAYOUT_EVENT, e => {
       e.preventDefault();
       e.stopPropagation();
       const layout = new GoldenLayoutClass(
         (e as CustomEvent).detail.element as HTMLElement
       );
+      layout.resizeWithContainerAutomatically = true;
 
       layout.registerComponentFactoryFunction(
         'native-html-component',
@@ -48,11 +47,6 @@ export class GoldenLayout extends BaseElement {
     this.addEventListener(ROOT_LOADED_EVENT, e => {
       e.preventDefault();
       e.stopPropagation();
-      if (this.scopedElements) {
-        for (const [tag, el] of Object.entries(this.scopedElements)) {
-          (e as any).detail.rootElement.defineScopedElement(tag, el);
-        }
-      }
 
       const layout = this._goldenLayoutContext.value;
       if (this.layoutConfig) {

@@ -1,4 +1,5 @@
 import { render, html, TemplateResult } from 'lit';
+import { customElement } from 'lit/decorators.js';
 import { property } from 'lit/decorators.js';
 import { ContextConsumer } from '@lit-labs/context';
 import { GoldenLayout, JsonValue } from 'golden-layout';
@@ -6,6 +7,7 @@ import { GoldenLayout, JsonValue } from 'golden-layout';
 import { goldenLayoutContext } from '../utils/context';
 import { BaseElement } from '../utils/base-element';
 
+@customElement('golden-layout-register')
 export class GoldenLayoutRegister extends BaseElement {
   @property({ attribute: 'component-type' })
   componentType!: string;
@@ -39,7 +41,7 @@ export class GoldenLayoutRegister extends BaseElement {
             goldenLayout.registerComponentFactoryFunction(
               this.componentType,
               (container, state) => {
-                render(templateFn(state), container.element);
+                render(templateFn(state), container.element, {});
               }
             );
           } else {
