@@ -36,12 +36,9 @@ export class GoldenLayout extends BaseElement {
       );
       layout.resizeWithContainerAutomatically = true;
 
-      layout.registerComponentFactoryFunction(
-        'native-html-component',
-        (container, state) => {
-          container.element.innerHTML = (state as any).html;
-        }
-      );
+      layout.registerComponent('native-html-component', (container, state) => {
+        container.element!.innerHTML = (state as any).html;
+      });
       this._goldenLayoutContext.setValue(layout as unknown as never);
     });
     this.addEventListener(ROOT_LOADED_EVENT, e => {

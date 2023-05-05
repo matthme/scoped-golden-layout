@@ -70,6 +70,10 @@ export class GoldenLayoutRoot extends BaseElement {
         .lm_content {
           display: flex;
         }
+
+        .lm_title {
+          display: flex !important;
+        }
       `,
       baseStyles,
       theme,

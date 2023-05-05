@@ -28,21 +28,13 @@
         class DemoApp extends LitElement {
           render() {
             return html`
-              <golden-layout
-                id="layout"
-                .scopedElements=${{
-                  'custom-span': class CustomSpan extends LitElement {
-                    render() {
-                      return html`customspan`;
-                    }
-                  },
-                }}
-              >
+              <golden-layout id="layout">
                 <golden-layout-register component-type="hello">
                   <template> <div>hi</div></template></golden-layout-register
                 >
                 <golden-layout-register
                   component-type="reactive-template"
+                  .titleRenderer=${({ text }) => html`<span>${text} hey</span>`}
                   .template=${({ text }) => html`<custom-span></custom-span>`}
                 ></golden-layout-register>
                 <div
@@ -64,7 +56,6 @@
                         </golden-layout-component>
                         <golden-layout-component
                           component-type="reactive-template"
-                          title="hi2"
                           .state=${{ text: 'asdf' }}
                         >
                         </golden-layout-component>
