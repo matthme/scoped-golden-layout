@@ -10,6 +10,8 @@ import { BaseElement } from '../utils/base-element';
 import { GetContent } from '../utils/get-content';
 import { INIT_LAYOUT_EVENT, ROOT_LOADED_EVENT } from '../utils/events';
 
+import '@fontsource/aileron';
+
 @customElement('golden-layout-root')
 export class GoldenLayoutRoot extends BaseElement {
   initLayout(el: Element | undefined) {
@@ -65,6 +67,7 @@ export class GoldenLayoutRoot extends BaseElement {
           display: flex;
           flex: 1;
           overflow: hidden;
+          font-family: "Aileron", "Open Sans", "Helvetica Neue", sans-serif;
         }
 
         .lm_content {
@@ -73,6 +76,40 @@ export class GoldenLayoutRoot extends BaseElement {
 
         .lm_title {
           display: flex !important;
+          margin: 0 5px;
+        }
+
+        .lm_tab {
+          height: 28px !important;
+          border-radius: 4px;
+          margin: 3px 2px !important;
+          border: none !important;
+          box-shadow: 0 0 1px #939393 !important;
+          display: flex !important;
+          align-items: center !important;
+          padding-bottom: 2px !important;
+          font-family: 'Aileron' !important;
+        }
+
+        .lm_tab:hover {
+            box-shadow: 0 0 1px #3d3d3d !important;
+        }
+
+        .lm_active {
+            box-shadow: 0 0 1px #3d3d3d !important;
+        }
+
+        .lm_header {
+            height: 36px !important;
+        }
+
+        .lm_close_tab {
+            height: 20px !important;
+            width: 20px !important;
+        }
+        .lm_close_tab:hover {
+            background: gray;
+            border-radius: 3px;
         }
       `,
       baseStyles,
