@@ -79,16 +79,20 @@ export class GoldenLayoutRoot extends BaseElement {
           margin: 0 5px;
         }
 
+
         .lm_tab {
-          height: 28px !important;
+          height: 40px !important;
           border-radius: 4px;
-          margin: 3px 2px !important;
+          margin: 4px 0 4px 5px !important;
           border: none !important;
           box-shadow: 0 0 1px #939393 !important;
           display: flex !important;
           align-items: center !important;
           padding-bottom: 2px !important;
           font-family: 'Aileron' !important;
+          font-size: 16px !important;
+          color: black !important;
+          max-width: 110px;
         }
 
         .lm_tab:hover {
@@ -97,15 +101,19 @@ export class GoldenLayoutRoot extends BaseElement {
 
         .lm_active {
             box-shadow: 0 0 1px #3d3d3d !important;
+            background: #bcc1e5 !important;
         }
 
         .lm_header {
-            height: 36px !important;
+            height: 50px !important;
+            background: #dbdef9;
+            overflow-x: scroll !important;
         }
 
         .lm_close_tab {
-            height: 20px !important;
-            width: 20px !important;
+            margin-top: 4px !important;
+            height: 25px !important;
+            width: 25px !important;
         }
         .lm_close_tab:hover {
             background: gray;

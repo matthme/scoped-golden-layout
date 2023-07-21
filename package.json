@@ -21,12 +21,12 @@
     "publish-to-branch": "npm run build && gh-pages -d ./ -b build"
   },
   "dependencies": {
+    "@fontsource/aileron": "^5.0.5",
     "@lit-labs/context": "^0.2.0",
     "@lit-labs/observers": "^1.1.0",
     "lit": "^2.2.0"
   },
   "devDependencies": {
-    "@fontsource/aileron": "^5.0.5",
     "@open-wc/eslint-config": "^4.3.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@rollup/plugin-typescript": "^8.2.5",
