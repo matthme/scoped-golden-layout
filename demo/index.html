@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      body {
+        background: #fafafa;
+      }
+      html,
+      body,
+      #layout {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <demo-app id="layout"></demo-app>
+
+    <script type="module">
+      import '../dist/index.js';
+      import { render, html, LitElement } from 'lit';
+
+      customElements.define(
+        'demo-app',
+        class DemoApp extends LitElement {
+          render() {
+            return html`
+              <golden-layout id="layout">
+                <golden-layout-register component-type="hello">
+                  <template> <div>hi</div></template></golden-layout-register
+                >
+                <golden-layout-register
+                  component-type="reactive-template"
+                  .titleRenderer=${({ text }) => html`<span>${text} hey</span>`}
+                  .template=${({ text }) => html`<custom-span></custom-span>`}
+                ></golden-layout-register>
+                <div
+                  style="display: flex; flex-direction: row; flex: 1; width: 100vw"
+                >
+                  <ul>
+                    <golden-layout-drag-source component-type="hello"
+                      ><li>hii</li></golden-layout-drag-source
+                    >
+                  </ul>
+
+                  <golden-layout-root style="flex: 1">
+                    <golden-layout-row>
+                      <golden-layout-row width="50">
+                        <golden-layout-component
+                          component-type="hello"
+                          title="hi2"
+                        >
+                        </golden-layout-component>
+                        <golden-layout-component
+                          component-type="reactive-template"
+                          .state=${{ text: 'asdf' }}
+                        >
+                        </golden-layout-component>
+                      </golden-layout-row>
+                      <golden-layout-column width="10">
+                        <golden-layout-component title="hi" unclosable>
+                          <div><span>Custom Thing2</span></div>
+                        </golden-layout-component>
+                      </golden-layout-column>
+                    </golden-layout-row>
+                  </golden-layout-root>
+                </div>
+              </golden-layout>
+            `;
+          }
+        }
+      );
+    </script>
+  </body>
+</html>
