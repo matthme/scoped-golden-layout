@@ -80,34 +80,90 @@ export class GoldenLayoutRoot extends BaseElement {
         }
 
 
+        .lm_tabs {
+            height: 50px;
+            padding-left: 8px;
+            overflow-y: hidden;
+        }
+
         .lm_tab {
           height: 40px !important;
-          border-radius: 4px;
-          margin: 4px 0 4px 5px !important;
+          border-radius: 8px 8px 0 0;
+          top: 8px;
+          margin: 0 0 0 3px !important;
           border: none !important;
           box-shadow: 0 0 1px #939393 !important;
           display: flex !important;
           align-items: center !important;
-          padding-bottom: 2px !important;
           font-family: 'Aileron' !important;
           font-size: 16px !important;
           color: black !important;
           max-width: 110px;
+          position: relative !important;
+          background: #22207457 !important;
         }
 
+        .lm_tab::before {
+            content: "";
+            position: absolute !important;
+            display: block !important;
+            background-color: transparent !important;
+            left: -15px;
+            bottom: 0;
+            height: 40px !important;
+            width: 15px !important;
+            border-radius: 0 0 10px 0;
+            box-shadow: 0 10px 0 0 rgb(149 157 206);
+        }
+
+        .lm_tab:hover::before {
+            box-shadow: 0 10px 0 0 white;
+        }
+
+        .lm_tab:hover::after {
+            box-shadow: 0 10px 0 0 white;
+        }
+
+        .lm_tab.lm_active::before {
+            box-shadow: 0 10px 0 0 white;
+        }
+
+        /* .lm_tab.lm_active::after {
+            content: "";
+            position: absolute !important;
+            display: block !important;
+            background-color: transparent !important;
+            right: -15px;
+            bottom: 0;
+            height: 40px !important;
+            width: 15px !important;
+            border-radius: 0 0 0 10px;
+            box-shadow: 0 10px 0 0 rgb(149 157 206);
+        } */
+
         .lm_tab:hover {
-            box-shadow: 0 0 1px #3d3d3d !important;
+            box-shadow: 0 0 2px 2px #bfbfbf !important;
+            background: white !important;
+            color: #0e001c !important;
         }
 
         .lm_active {
-            box-shadow: 0 0 1px #3d3d3d !important;
-            background: #bcc1e5 !important;
+            box-shadow: 0 0 2px 2px #bfbfbf !important;
+            background: white !important;
+            color: #0e001c !important;
         }
 
         .lm_header {
             height: 50px !important;
             background: #dbdef9;
             overflow-x: scroll !important;
+            overflow-y: hidden !important;
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .lm_header::-webkit-scrollbar {
+          display: none;
         }
 
         .lm_close_tab {
